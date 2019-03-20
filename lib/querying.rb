@@ -22,9 +22,14 @@ def select_value_and_count_of_most_prolific_species
 end
 
 def select_name_and_series_subgenres_of_authors
-  "SELECT author_id=authors.name, subgenre_id=subgenres.name
-  FROM series
-  "
+  "SELECT authors.name, subgenres.name
+  FROM authors
+  LEFT JOIN (
+    SELECT subgenre.name
+    FROM subgenre
+    WHERE series.subgenre_id=subgenre.id
+  )
+  ON authors.id=series.author_id"
 end
 
 def select_series_title_with_most_human_characters
