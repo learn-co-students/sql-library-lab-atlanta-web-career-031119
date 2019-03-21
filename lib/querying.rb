@@ -51,11 +51,11 @@ def select_series_title_with_most_human_characters
 end
 # binding.pry
 def select_character_names_and_number_of_books_they_are_in
-  "SELECT characters.name, COUNT(books)
+  "SELECT characters.name, COUNT(books.id)
   FROM characters
-  LEFT JOIN character_books
+  JOIN character_books
   ON character_books.character_id=characters.id
   JOIN books
-  ON characters_books.book_id=books.id
+  ON character_books.book_id=books.id
   GROUP BY characters.name"
 end
